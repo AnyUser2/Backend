@@ -53,4 +53,8 @@ public class ParqueaderoService {
         return registroRepository.findByFechaSalidaIsNull();
     }
 
+    public List<Vehiculo> listarVehiculos() {
+        return vehiculoRepository.findAll();
+    }
+
 }

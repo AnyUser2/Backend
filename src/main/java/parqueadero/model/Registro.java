@@ -1,7 +1,6 @@
 package parqueadero.model;
 
 import jakarta.persistence.*;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +22,9 @@ public class Registro {
     @ManyToOne
     @JoinColumn(name = "id_vehiculo")
     private Vehiculo vehiculo;
+
+    @ManyToOne
+    private Celda celda;
 
     public Integer getIdRegistro() {
         return idRegistro;
