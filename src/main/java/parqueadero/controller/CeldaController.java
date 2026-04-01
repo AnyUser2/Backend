@@ -1,6 +1,5 @@
 package parqueadero.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import parqueadero.model.Celda;
 import parqueadero.service.CeldaService;
@@ -8,25 +7,22 @@ import parqueadero.service.CeldaService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/celda")
+@RequestMapping("/celdas")
 public class CeldaController {
 
-    @Autowired
-    private CeldaService cellService;
+    private final CeldaService service;
 
-    @GetMapping("/disponible")
-    public List<String> available() {
-        return cellService.getAvailableCells();
-    }
-
-    @PutMapping("/{celdaId}/release")
-    public Celda release(@PathVariable Long celdaId) {
-        return cellService.releaseCell(celdaId);
+    public CeldaController(CeldaService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public Celda crearCelda(@RequestBody Celda celda) {
-        return cellService.crear(celda);
+    public Celda crear(@RequestBody Celda celda) {
+        return service.crear(celda);
     }
 
+    @GetMapping
+    public List<Celda> listar() {
+        return service.listar();
+    }
 }

@@ -1,30 +1,28 @@
 package parqueadero.controller;
 
-import parqueadero.model.Vehiculo;
-import parqueadero.service.ParqueaderoService;
 import org.springframework.web.bind.annotation.*;
+import parqueadero.model.Vehiculo;
+import parqueadero.service.VehiculoService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/vehiculos")
-@CrossOrigin
 public class VehiculoController {
 
-    private final ParqueaderoService service;
+    private final VehiculoService service;
 
-    public VehiculoController(ParqueaderoService service) {
+    public VehiculoController(VehiculoService service) {
         this.service = service;
     }
 
     @PostMapping
-    public Vehiculo registrarVehiculo(@RequestBody Vehiculo vehiculo) {
-        return service.registrarVehiculo(vehiculo);
+    public Vehiculo crear(@RequestBody Vehiculo vehiculo) {
+        return service.crear(vehiculo);
     }
 
     @GetMapping
-    public List<Vehiculo> listarVehiculos() {
-        return service.listarVehiculos();
+    public List<Vehiculo> listar() {
+        return service.listar();
     }
-
 }

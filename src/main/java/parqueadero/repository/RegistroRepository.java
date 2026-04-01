@@ -1,11 +1,13 @@
 package parqueadero.repository;
 
-import parqueadero.model.Registro;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import parqueadero.model.Registro;
 
-public interface RegistroRepository extends JpaRepository<Registro, Integer> {
+import java.util.Optional;
 
-    List<Registro> findByFechaSalidaIsNull();
+public interface RegistroRepository extends JpaRepository<Registro, Long> {
 
+    Optional<Registro> findByVehiculoId(Long vehiculoId);
+
+    boolean existsByCeldaId(Long celdaId);
 }

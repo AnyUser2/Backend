@@ -1,34 +1,28 @@
 package parqueadero.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "celdas")
 public class Celda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code;
+    @Column(unique = true)
+    private String numero;
 
-    @Getter
-    @Setter
-    private Boolean available;
+    private boolean disponible = true;
 
-    public boolean isAvailable() {
-        return available;
-    }
+    public Celda() {}
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+    public Long getId() { return id; }
 
-    public String getCode(){
-        return code;
-    }
+    public String getNumero() { return numero; }
 
+    public void setNumero(String numero) { this.numero = numero; }
+
+    public boolean isDisponible() { return disponible; }
+
+    public void setDisponible(boolean disponible) { this.disponible = disponible; }
 }

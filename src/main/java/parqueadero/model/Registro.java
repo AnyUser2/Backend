@@ -1,7 +1,6 @@
 package parqueadero.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,68 +8,32 @@ public class Registro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRegistro;
-
-    private String nombreConductor;
-
-    private String telefonoConductor;
-
-    private LocalDateTime fechaEntrada;
-
-    private LocalDateTime fechaSalida;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_vehiculo")
+    private Usuario usuario;
+
+    @ManyToOne
     private Vehiculo vehiculo;
 
     @ManyToOne
     private Celda celda;
 
-    public Integer getIdRegistro() {
-        return idRegistro;
-    }
+    private LocalDateTime fecha;
 
-    public void setIdRegistro(Integer idRegistro) {
-        this.idRegistro = idRegistro;
-    }
+    public Registro() {}
 
-    public String getNombreConductor() {
-        return nombreConductor;
-    }
+    public Long getId() { return id; }
 
-    public void setNombreConductor(String nombreConductor) {
-        this.nombreConductor = nombreConductor;
-    }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public String getTelefonoConductor() {
-        return telefonoConductor;
-    }
+    public Vehiculo getVehiculo() { return vehiculo; }
+    public void setVehiculo(Vehiculo vehiculo) { this.vehiculo = vehiculo; }
 
-    public void setTelefonoConductor(String telefonoConductor) {
-        this.telefonoConductor = telefonoConductor;
-    }
+    public Celda getCelda() { return celda; }
+    public void setCelda(Celda celda) { this.celda = celda; }
 
-    public LocalDateTime getFechaEntrada() {
-        return fechaEntrada;
-    }
-
-    public void setFechaEntrada(LocalDateTime fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
-    }
-
-    public LocalDateTime getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(LocalDateTime fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
-    public Vehiculo getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
-    }
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 }
